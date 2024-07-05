@@ -1,7 +1,7 @@
 body {
     font-family: latha;
     color: white;
-    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("/static/restaurant/fod.jpg") no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("/static/restaurant/food.jpeg") no-repeat;
     background-size: 100% 50%;
     /* Modifier la taille de l'image à 50% */
     opacity: 0;
