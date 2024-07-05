@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Réservation</title>
+    <style>
+        /* Styles CSS pour le formulaire de réservation */
+        body {
+            background-color: #f1f1f1;
+            font-family: Arial, sans-serif;
+        }
+
+        .reservation-form {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .reservation-form:hover {
+            transform: scale(1.1);
+        }
+
+        .reservation-form h2 {
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            color: #4CAF50;
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+
+        .reservation-form label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .reservation-form input[type="text"],
+        .reservation-form input[type="email"],
+        .reservation-form input[type="tel"],
+        .reservation-form select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+            color: #333;
+            /* Couleur du texte */
+        }
+
+        .reservation-form input[type="text"]:focus,
+        .reservation-form input[type="email"]:focus,
+        .reservation-form input[type="tel"]:focus,
+        .reservation-form select:focus {
+            border-color: #4CAF50;
+        }
+
+        .reservation-form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .reservation-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+    <script>
+        function validateTime() {
+            var heureInput = document.getElementById("heure");
+            var heureValue = heureInput.value;
+
+            var heureMin = "11:00";
+            var heureMax = "00:00";
+
+            var heureMinObj = new Date("1970-01-01 " + heureMin);
+            var heureMaxObj = new Date("1970-01-02 " + heureMax);
+            var heureValueObj = new Date("1970-01-01 " + heureValue);
+
+            if (heureValueObj < heureMinObj || heureValueObj > heureMaxObj) {
+                var errorMessage = document.getElementById("heure-error");
+                errorMessage.textContent = "Restaurant fermé, veuillez saisir une heure valide (entre 11:00 et 00:00)";
+                return false;
+            } else {
+                var errorMessage = document.getElementById("heure-error");
+                errorMessage.textContent = "";
+                return true;
+            }
+        }
+
+
+        function validateForm() {
+            var isTimeValid = validateTime();
+
+            return isTimeValid;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="reservation-form">
+        <h2>Réservation</h2>
+        <form action="/reservation" method="POST" onsubmit="return validateForm()">
+            <label for="nom">Nom:</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="prenom">Prénom:</label>
+            <input type="text" id="prenom" name="prenom" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="numerotel">Numéro de téléphone:</label>
+            <input type="tel" id="numerotel" name="numerotel" required>
+
+            <label for="jour_reservation">Jour de réservation:</label>
+            <input type="date" id="jour_reservation" name="jour_reservation" required>
+
+            <label for="heure">Heure:</label>
+            <input type="time" id="heure" name="heure" required>
+            <span id="heure-error" class="error-message"></span>
+
+            <label for="nombre_personnes">Nombre de personnes:</label>
+            <input type="number" id="nombre_personnes" name="nombre_personnes" required>
+
+            <label for="nom_restaurant">Choisissez le restaurant:</label>
+            <select id="nom_restaurant" name="nom_restaurant" required>
+                <option value="KFC">KFC</option>
+                <option value="McDonald's">McDonald's</option>
+                <option value="Burger King">Burger King</option>
+            </select>
+
+            <input type="submit" value="Réserver">
+        </form>
+    </div>
+
+</body>
+
+</html>

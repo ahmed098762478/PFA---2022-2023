@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/restaurant.css') }}">
+</head>
+
+<body>
+    <div class="box">
+        <ul type="none">
+            <li><a href="#" class="restaurant-link" data-image="kfc">KFC</a></li>
+            <li><a href="#" class="restaurant-link" data-image="mcdonalds">Mcdonalds</a></li>
+            <li><a href="#" class="restaurant-link" data-image="burgerking">BURGER KING</a></li>
+            <li><a href="">Reserver</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </div>
+    <div class="wd">
+        <h1>Bienvenue!</h1>
+        <h4>Soyez les bienvenus dans nos restaurants KFC et MCDONALDS et BURGER KING, nous sommes ravis de vous servir
+        </h4>
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='restaurant/kfc.avif') }}" alt="Photo 1">
+            <img src="{{ url_for('static', filename='restaurant/mcdonalds.png') }}" alt="Photo 2">
+            <img src="{{ url_for('static', filename='restaurant/burger.png') }}" alt="Photo 2">
+        </div>
+    </div>
+    <div class="second-page">
+        <h1></h1>
+        <div class="book">
+            <!-- For Next/Prev Controls -->
+            <input type="checkbox" id="c1">
+            <input type="checkbox" id="c2">
+            <input type="checkbox" id="c3">
+            <!-- Book Cover -->
+            <div id="cover">
+                <img src="cover.jpg" alt="Cover">
+            </div>
+            <!-- Pages -->
+            <div class="flip-book">
+                <!-- Page 1 -->
+                <div class="flip" id="p1">
+                    <div class="back">
+                        <img src="/static/restaurant/flipbook/kfc.webp" alt="">
+                        <label for="c1" class="back-btn">Before</label>
+                    </div>
+                    <div class="front">
+                        <h2>Page 1</h2>
+                        <label for="c1" class="next-btn">NEXT</label>
+                    </div>
+                </div>
+                <!-- Page 2 -->
+                <div class="flip" id="p2">
+                    <div class="back">
+                        <img src="/static/restaurant/flipbook/burger.jpeg" alt="">
+                        <label for="c2" class="back-btn">Before</label>
+                    </div>
+                    <div class="front">
+                        <h2>Page 2</h2>
+                        <label for="c2" class="next-btn">NEXT</label>
+                    </div>
+                </div>
+                <!-- Page 3 -->
+                <div class="flip" id="p3">
+                    <div class="back">
+                        <img src="/static/restaurant/flipbook/mcdonalds.jpg" alt="">
+                        <label for="c3" class="back-btn">Before</label>
+                    </div>
+                    <div class="front">
+                        <h2>Page 3</h2>
+                        <label for="c3" class="next-btn">NEXT</label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <style>
+        .second-page {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: orange;
+            /* Couleur orange clair */
+            margin-top: 50px;
+            /* Ajustez cette valeur selon vos besoins */
+            margin-right: 0;
+        }
+
+
+
+        .book {
+            display: flex;
+        }
+
+        #cover {
+            width: 250px;
+            height: 400px;
+        }
+
+        .flip-book {
+            width: 500px;
+            height: 700px;
+            position: relative;
+            perspective: 1500px;
+            margin-left: 20px;
+            margin-top: 100px;
+            /* Modifier la valeur pour déplacer vers le bas */
+            transition: transform 0.5s;
+        }
+
+
+        .flip-book:hover {
+            transform: scale(1.2);
+            /* Agrandissement au survol de la souris */
+        }
+
+
+        .flip {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: left;
+            transform-style: preserve-3d;
+            transform: rotateY(0deg);
+            transition: .5s;
+            color: #000;
+        }
+
+        .front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            box-sizing: border-box;
+            padding: 0 13px;
+        }
+
+        .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 99;
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+            background-color: #000;
+        }
+
+        .next-btn {
+            position: absolute;
+            bottom: 13px;
+            right: 13px;
+            cursor: pointer;
+            color: #000;
+        }
+
+        .back-btn {
+            position: absolute;
+            bottom: 13px;
+            right: 13px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        #p1 {
+            z-index: 3;
+        }
+
+        #p2 {
+            z-index: 2;
+        }
+
+        #p3 {
+            z-index: 1;
+        }
+
+        #c1:checked~.flip-book #p1 {
+            transform: rotateY(-180deg);
+            z-index: 1;
+        }
+
+        #c2:checked~.flip-book #p2 {
+            transform: rotateY(-180deg);
+            z-index: 2;
+        }
+
+        #c3:checked~.flip-book #p3 {
+            transform: rotateY(-180deg);
+            z-index: 3;
+        }
+
+        .flip .back img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        #p3 .back img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        #p2 .back img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            var body = document.querySelector('body');
+            var box = document.querySelector('.box');
+            var images = document.querySelectorAll('.image-container img');
+            var restaurantLinks = document.querySelectorAll('.restaurant-link');
+
+            // Ajout de la classe pour déclencher l'animation du body
+            setTimeout(function () {
+                body.classList.add('loaded');
+            }, 500);
+
+            // Affichage des images après 1 seconde
+            setTimeout(function () {
+                images.forEach(function (image) {
+                    image.style.opacity = 1;
+                });
+            }, 1000);
+
+            // Affichage de la classe .box après 2 secondes
+            setTimeout(function () {
+                box.style.display = 'block';
+            }, 2000);
+
+            // Animation d'agrandissement des images au survol de la souris
+            images.forEach(function (image) {
+                image.addEventListener('mouseover', function () {
+                    image.style.transform = 'scale(1.1)';
+                });
+
+                image.addEventListener('mouseout', function () {
+                    image.style.transform = 'scale(1)';
+                });
+            });
+
+            // Changement des images en mode sombre au clic sur les liens
+            restaurantLinks.forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    var imageToHighlight = this.getAttribute('data-image');
+                    images.forEach(function (image) {
+                        image.classList.remove('highlight');
+                    });
+                    document.querySelector('.image-container img[data-image="' + imageToHighlight + '"]').classList.add('highlight');
+                });
+
+                if (link.getAttribute('data-image') === 'mcdonalds') {
+                    link.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        var section2 = document.querySelector('.second-page');
+                        section2.scrollIntoView({ behavior: 'smooth' });
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

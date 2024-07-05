@@ -1,0 +1,356 @@
+{
+    "intents": [
+        {
+            "tag": "unknown",
+            "patterns": [
+                ""
+            ],
+            "responses": [
+                "Desole je ne comprends pas votre message, veuillez le  reformuler afin que je puisse comprendre ?"
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "greeting",
+            "patterns": [
+                "salut",
+                "bonjour",
+                "coucou"
+            ],
+            "responses": [
+                "Bonjour ! Comment puis-je vous aider \ud83d\ude03 ?"
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "modele_IA",
+            "patterns": [
+                "cava",
+                "ca va ?",
+                "comment ca va ?",
+                "comment vas-tu ?",
+                "comment allez vous ?"
+            ],
+            "responses": [
+                "je suis un modele IA je n'ai pas des emotions \ud83d\ude2e mais merci pour votre question,comment puis-je t'assister \ud83d\ude01 ? "
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "services",
+            "patterns": [
+                "quels sont vos services ?",
+                "que serviez vous ?",
+                "c'est quoi vos services ?",
+                "que offrez vous ?"
+            ],
+            "responses": [
+                "nous offrons des services de restauration \ud83d\ude01 , je peux te fournir des informations sur les restaurants et meme t'assister a commander des plats et reserver des tables \ud83d\ude03 "
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "liste_restaurants",
+            "patterns": [
+                "veuillez entrer la liste des restaurants",
+                "afficher la liste des restaurants",
+                "donner la liste des restaurants",
+                "liste des restaurants",
+                "restaurants qui existent"
+            ],
+            "responses": [
+                "<style>.restaurant-name { text-align: center; margin-top: 10px; display: inline-block; padding: 5px; background-color: lightblue; color: black; font-size: 1.1em; }</style>Voici la liste des restaurants \ud83d\ude03 :<br><br><br>- <a href='http://www.eat.ma/' target='_blank'><img src='static/restaurant/kfc.avif' width='350' height='200' class='zoomable-image'></a><br><br><span class='restaurant-name'>Restaurant 1: KFC</span><br><br>- <a href='https://www.mcdonalds.ma/' target='_blank'><img src='static/restaurant/mcdonalds.png' width='350' height='200' class='zoomable-image'></a><br><br><span class='restaurant-name'>Restaurant 2: McDonald's</span><br><br>- <a href='https://www.bk.com/' target='_blank'><img src='static/restaurant/burger.png' width='350' height='200' class='zoomable-image'></a><br><br><span class='restaurant-name'>Restaurant 3: Burger King</span><br>"
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "menu",
+            "patterns": [
+                "quel est votre menu ?",
+                "afficher le menu ",
+                "menu",
+                "donner le menu"
+            ],
+            "responses": [
+                " le menu de quel restaurant \ud83d\ude03 ?"
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "mcdonalds_menu",
+            "patterns": [
+                "afficher le menu de mcdonalds",
+                "donner le menu de mcdonalds",
+                "donner le menu du mcdonalds",
+                "menu mcdonalds",
+                "mcdonalds"
+            ],
+            "responses": [
+                "Voici le menu du restaurant McDonald's : <a href='http://www.mcdonalds.ma/les-produits-mcdo#nos-menus' target='_blank'>Cliquez ici</a> pour consulter le menu."
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "kfc_menu",
+            "patterns": [
+                "afficher le menu de kfc",
+                "donner le menu du kfc",
+                "donner le menu de kfc",
+                "menu kfc",
+                "kfc"
+            ],
+            "responses": [
+                "Voici le menu du restaurant KFC :<br><br>- <a href='https://www.eat.ma/rabat/kfc-agdal#&gid=1&pid=1' target='_blank'><img src='static/restaurant/menu_kfc.jpg' alt='KFC Menu' width='300' height='350' class='zoomable-image' style='transition: transform 0.3s ease;'></a>"
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "burger_menu",
+            "patterns": [
+                "afficher le menu de burger king",
+                "donner le menu du burger king",
+                "menu burger king",
+                "burger king"
+            ],
+            "responses": [
+                "Voici le menu du Burger King :<br><br>- <a href='https://www.eat.ma/maroc/burger-king-maroc#&gid=1&pid=1' target='_blank'><img src='static/restaurant/menu1.png' width='300' height='200' class='zoomable-image'></a><br><br>- <a href='https://www.eat.ma/maroc/burger-king-maroc#&gid=1&pid=2' target='_blank'><img src='static/restaurant/menu2.jpg' width='300' height='200' class='zoomable-image'></a><br><br>- <a href='https://www.eat.ma/maroc/burger-king-maroc#&gid=1&pid=4' target='_blank'><img src='static/restaurant/menu3.jpg' width='300' height='200' class='zoomable-image'></a><br>"
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "horaire",
+            "patterns": [
+                "afficher l'horaire",
+                "donner l'horaire",
+                "donner l'horaire",
+                "horaire"
+            ],
+            "responses": [
+                "veuillez preciser l'horaire de quel restaurant. "
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "horaire_kfc",
+            "patterns": [
+                "afficher l'horaire de kfc",
+                "donner l'horaire du kfc",
+                "donner l'horaire de kfc",
+                "kfc horaire",
+                "horaire kfc",
+                "donner l'heurre d'ouverture et fermeture du kfc",
+                "ouverture kfc",
+                "fermeture kfc"
+            ],
+            "responses": [
+                "KFC est disponible  de 11h00 AM à 00h00 PM du lundi au dimanche."
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "horraire_mcdonalds",
+            "patterns": [
+                "afficher l'horaire du mcdonalds",
+                "afficher l'horaire de mcdonalds",
+                "donner l'horaire de mcdonalds",
+                "donner l'horaire du mcdonalds",
+                "mcdonalds horaires",
+                "donner l'heure d'ouverture et fermeture du mcdonalds",
+                "ouverture mcdonalds",
+                "fermeture mcdonalds"
+            ],
+            "responses": [
+                "Les horaires du McDonald's sont de 9h00 à 23h00 du lundi au dimanche."
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "horaire_burger",
+            "patterns": [
+                "afficher l'horaire de burger king",
+                "donner l'horaire du burger king",
+                "donner l'horaire de burger king",
+                "burger king horaire",
+                "horaire burger king",
+                "donner l'heurre d'ouverture et fermeture du burger king",
+                "ouverture burger king",
+                "fermeture burger king"
+            ],
+            "responses": [
+                "burger king est ouvert de 11h00 AM à 02h00 PM du lundi au dimanche."
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "localisation_kfc",
+            "patterns": [
+                "donner la localisation de kfc",
+                "donner la localisation du kfc",
+                "donner la localisation kfc",
+                "localiser le restaurant kfc",
+                "localisation kfc",
+                "adresse kfc",
+                "où se situe kfc"
+            ],
+            "responses": [
+                "voici la localisation du kfc, veuillez appuier sur cette image : <br><br>- <a href='https://www.google.com/maps/place/KFC/@34.0213573,-6.8421811,17z/data=!3m1!4b1!4m6!3m5!1s0xda76de88609a447:0x36bfc6061a48837e!8m2!3d34.0213529!4d-6.8396062!16s%2Fg%2F11mx3xx8r2' target='_blank'><img src='static/restaurant/localisation.png' alt='KFC Location' width='350' height='150' class='zoomable-image'></a> "
+            ]
+        },
+        {
+            "tag": "localisation_mcdonalds",
+            "patterns": [
+                "donner la localisation du mcdonalds",
+                "donner la localisation mcdonalds",
+                "localisation mcdonalds",
+                "adresse mcdonalds",
+                "localiser mcdonalds",
+                "ou se situe mcdonalds"
+            ],
+            "responses": [
+                "voici la localisation du mcdonalds, veuillez appuier sur ce lien : <a href='https://www.google.com/maps/dir//105+Av.+Fal+Ould+Oumeir,+Rabat+10080/@33.9955301,-6.8886248,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0xda76c903b63c0a5:0xcfb263451c21f79a!2m2!1d-6.8474299!2d33.9954641?entry=ttu' target='_blank'>Cliquez ici</a> pour voir l'adresse sur Google Maps."
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "localisation_burger",
+            "patterns": [
+                "donner la localisation de burger king",
+                "donner la localisation du burger king",
+                "donner la localisation burger king",
+                "localiser le restaurant burger king",
+                "localisation burger king",
+                "adresse burger king",
+                "où se situe burger king"
+            ],
+            "responses": [
+                "D'accord monsieur, veuillez appuier sur cette image afin d'obtenir la localisation de burger king : <br><br>- <a href='https://www.google.com/maps/place/Burger+King/@33.9630159,-6.8656984,15z/data=!4m6!3m5!1s0xda76d187327385f:0x1fa0dd93b8575eea!8m2!3d33.9630159!4d-6.8656984!16s%2Fg%2F11mvnkd6s9?entry=ttu' target='_blank'><img src='static/restaurant/localisation.png' alt='KFC Location' width='350' height='150' class='zoomable-image'></a> "
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "reservation",
+            "patterns": [
+                "je veux reserver",
+                "je veux faire une reservation",
+                "je veux effectuer une reservation",
+                "faire une resrvation",
+                "reservation",
+                "je veux reserver dans kfc",
+                "je veux reserver dans mcdonalds",
+                "je veux reserver dans burger king"
+            ],
+            "responses": [
+                "Veuillez saisir les informations de reservation."
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "annulation",
+            "patterns": [
+                "je veux annuler une reservation",
+                "annuler une reservation",
+                "annulation d'une reservation",
+                "annulation",
+                "je veux annuler une reservation dans kfc",
+                "annuler un reservation dans mcdonalds"
+            ],
+            "responses": [
+                "veuiller saisir les informations pour annuler votre reservation"
+            ]
+        },
+        {
+            "tag": "commande",
+            "patterns": [
+                "je veux faire une commande",
+                "effectuer une commande",
+                "je veux commander",
+                "commande"
+            ],
+            "responses": [
+                "Bien sûr, voici les plats disponibles :<br><br><div style='text-align: center'><img src='static/restaurant/commande/humberger.png' alt='Plat 1' width='300' height='200' style='margin-bottom: 5px' class='zoomable-image'><br><p class='zoomable-image' style='border: 1px solid blue; padding: 10px; color: blue;'>Plat 1 : Humberger<br>Tarif : 16 MAD</p></div><br><div style='text-align: center'><img src='static/restaurant/commande/cheseburger.png' alt='Plat 2' width='300' height='350' style='margin-bottom: 5px' class='zoomable-image'><br><p class='zoomable-image' style='border: 1px solid blue; padding: 10px; color: blue;'>Plat 2 : Cheeseburger<br>Tarif : 19 MAD</p></div><br><br><div style='text-align: center'><img src='static/restaurant/commande/bigking.jpg' alt='Plat 3' width='300' height='200' style='margin-bottom: 5px' class='zoomable-image'><br><p class='zoomable-image' style='border: 1px solid blue; padding: 10px; color: blue;'>Plat 3 : BigKing XXL<br>Tarif : 74.00 MAD</p></div><br><br><br> fais ton choix !! \ud83d\ude03"
+            ]
+        },
+        {
+            "tag": "boisson",
+            "patterns": [
+                "je veux commander un boisson",
+                "je veux des boissons",
+                "y a t'il des boissons",
+                "commander un boisson",
+                "boissons"
+            ],
+            "responses": [
+                "Bien sûr, voici les plats disponibles :<br><br><div style='text-align: center'><img src='static/restaurant/commande/cafe.webp' alt='Plat 1' width='300' height='200' style='margin-bottom: 5px' class='zoomable-image'><br><p class='zoomable-image' style='border: 1px solid blue; padding: 10px; color: blue;'>Plat 1 : Cappuccino<br>Tarif : 26 MAD</p></div><br><div style='text-align: center'><img src='static/restaurant/commande/pepsi.jpg' alt='Plat 2' width='300' height='350' style='margin-bottom: 5px' class='zoomable-image'><br><p class='zoomable-image' style='border: 1px solid blue; padding: 10px; color: blue;'>Plat 2 : PEPSI <br>Tarif : 19 MAD</p></div><br><br><div style='text-align: center'><img src='static/restaurant/commande/coca.jpeg' alt='Plat 3' width='300' height='200' style='margin-bottom: 5px' class='zoomable-image'><br><p class='zoomable-image' style='border: 1px solid blue; padding: 10px; color: blue;'>Plat 3 : COLA XXL<br>Tarif : 14.00 MAD</p></div><br><br><br> fais ton choix !! \ud83d\ude03"
+            ]
+        },
+        {
+            "tag": "choix_plat",
+            "patterns": [
+                "je veux choix 1 ",
+                "j'ai choisi le Humberger",
+                "je veux commander le Humberger",
+                "choix 1",
+                "choix 2",
+                "je choisis le cheseburger",
+                "je veux cheseburger",
+                "choix 3",
+                "je choisis BIGKING",
+                "je veux bigking",
+                "je veux pepsi ",
+                "j'ai choisi coca cola",
+                "je veux commander aussi pepsi",
+                "cafe creme",
+                "cappuccino",
+                "je choisis pepsi",
+                "je veux cappuccino"
+            ],
+            "responses": [
+                "veuiller remplir ce formulaire de commande."
+            ]
+        },
+        {
+            "tag": "remerciement",
+            "patterns": [
+                "merci beaucoup monsieur",
+                "merci pour votre service",
+                "merci pour ton service",
+                "merci mr , au revoir"
+            ],
+            "responses": [
+                "je vous en prie \ud83d\ude03 , je te souhaite une bonne appetit!!"
+            ]
+        }
+    ]
+}

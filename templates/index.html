@@ -1,0 +1,209 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbot</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
+    <style>
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 20px;
+        }
+
+        .typing-indicator span {
+            background-color: gray;
+            border-radius: 50%;
+            width: 8px;
+            height: 8px;
+            margin-right: 4px;
+            opacity: 0.5;
+            animation: typing 0.8s infinite;
+            /* Durée de l'animation réduite */
+        }
+
+        .typing-indicator span:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+            /* Modification du délai */
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+            /* Modification du délai */
+        }
+
+        @keyframes typing {
+            0% {
+                opacity: 0.3;
+                /* Nouvelle étape avec une opacité réduite */
+            }
+
+            50% {
+                opacity: 1;
+                /* Nouvelle étape avec une opacité complète */
+            }
+
+            100% {
+                opacity: 0.3;
+                /* Retour à une opacité réduite */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="msger" id="chatbot-section">
+        <header class="msger-header" id="chatbot-header">
+            <div class="msger-header-title">
+                <img src="{{ url_for('static', filename='chatbot/icone.png') }}" alt="Online"
+                    style="vertical-align: middle; margin-right: 10px; height: 20px;">
+
+                <span class="msger-header-status">Statut: En ligne</span>
+            </div>
+        </header>
+
+        <main class="msger-chat" id="chatbot-message">
+            <div class="msg left-msg animate__animated animate__fadeIn">
+                <div class="msg-img" style="background-image: url_for('static', filename='chatbot.avif') ">
+                </div>
+
+                <div class="msg-bubble">
+                    <div class="msg-info">
+                        <div class="msg-info-name">Chatbot</div>
+                        <div class="msg-info-time">12:45</div>
+                    </div>
+
+                    <div class="msg-text">
+                        Bonjour, je suis un chatbot responsable de la gestion de 3 restaurants. Soyez la bienvenue 😄
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <form class="msger-inputarea">
+            <input type="text" class="msger-input" id="textInput" placeholder="Enter your message...">
+            <button type="submit" class="msger-send-btn">Send</button>
+        </form>
+    </section>
+
+    <script>
+        const msgerForm = document.querySelector(".msger-inputarea");
+        const msgerInput = document.querySelector(".msger-input");
+        const msgerChat = document.querySelector(".msger-chat");
+        const chatbotSection = document.querySelector("#chatbot-section");
+        const chatbotToggleBtn = document.querySelector("#chatbot-toggle-btn");
+
+        const BOT_IMG = "{{ url_for('static', filename='chatbot/chatbot.png') }}";
+        const PERSON_IMG = "{{ url_for('static', filename='chatbot/user.jpg') }}";
+        const BOT_NAME = "ChatBot";
+        const PERSON_NAME = "You";
+
+
+        msgerForm.addEventListener("submit", event => {
+            event.preventDefault();
+
+            const msgText = msgerInput.value;
+            if (!msgText) return;
+
+            appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
+            msgerInput.value = "";
+            showTypingIndicator(); // Show typing indicator
+            botResponse(msgText);
+        });
+
+        function appendMessage(name, img, side, text) {
+            const msgHTML = `
+            <div class="msg ${side}-msg animate__animated animate__fadeIn">
+                <div class="msg-img" style="background-image: url(${img})"></div>
+
+                <div class="msg-bubble">
+                    <div class="msg-info">
+                        <div class="msg-info-name">${name}</div>
+                        <div class="msg-info-time">${formatDate(new Date())}</div>
+                    </div>
+
+                    <div class="msg-text">${text}</div>
+                </div>
+            </div>
+            `;
+
+            msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+            msgerChat.scrollTop += 500;
+        }
+
+        function botResponse(rawText) {
+            setTimeout(function () {
+                hideTypingIndicator(); // Hide typing indicator
+                $.get("/get", { msg: rawText }).done(function (data) {
+                    console.log(rawText);
+                    console.log(data);
+                    const msgText = data;
+                    appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
+                    animateMessages();
+                });
+            }, 2000); // Delay of 1000 milliseconds (1 second)
+        }
+
+        function showTypingIndicator() {
+            const typingIndicatorHTML = `
+            <div class="msg left-msg animate__animated animate__fadeIn">
+                <div class="msg-img typing-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        `;
+
+            msgerChat.insertAdjacentHTML("beforeend", typingIndicatorHTML);
+            msgerChat.scrollTop += 500;
+            setTimeout(function () {
+                hideTypingIndicator();
+            }, 1000); // Ajout de la temporisation d'une seconde
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.querySelector(".typing-indicator");
+            if (typingIndicator) {
+                typingIndicator.classList.remove("animate__animated", "animate__infinite", "animate__pulse");
+                typingIndicator.classList.add("animated"); // Ajout de la classe "animated" pour réinitialiser l'animation
+                setTimeout(function () {
+                    typingIndicator.remove();
+                }, 1200); // Suppression de l'élément après une seconde
+            }
+        }
+
+        function animateMessages() {
+            const newMessages = document.querySelectorAll(".msg:not(.animate__animated)");
+            newMessages.forEach((message, index) => {
+                message.style.opacity = 0;
+                message.style.transform = "translateX(-100%)";
+                message.style.transition = "opacity 1s, transform 1s";
+
+                setTimeout(() => {
+                    message.style.opacity = 1;
+                    message.style.transform = "translateX(0)";
+                }, (index + 1) * 1500); // Add progressive delay for each message (1000 milliseconds interval)
+            });
+        }
+
+        function formatDate(date) {
+            const h = "0" + date.getHours();
+            const m = "0" + date.getMinutes();
+
+            return `${h.slice(-2)}:${m.slice(-2)}`;
+        }
+    </script>
+</body>
+
+</html>

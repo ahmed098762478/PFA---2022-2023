@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Annuler la réservation</title>
+    <style>
+        /* Styles CSS pour le formulaire d'annulation de réservation */
+        body {
+            background-color: #f1f1f1;
+            font-family: Arial, sans-serif;
+        }
+
+        .cancellation-form {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .cancellation-form:hover {
+            transform: scale(1.1);
+        }
+
+        .cancellation-form h2 {
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            color: #007bff;
+            /* Couleur bleue */
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+
+        .cancellation-form label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .cancellation-form input[type="text"],
+        .cancellation-form input[type="email"],
+        .cancellation-form input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+            color: #333;
+        }
+
+        .cancellation-form input[type="text"]:focus,
+        .cancellation-form input[type="email"]:focus,
+        .cancellation-form input[type="tel"]:focus {
+            border-color: #007bff;
+            /* Couleur bleue */
+        }
+
+        .cancellation-form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #007bff;
+            /* Couleur bleue */
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cancellation-form input[type="submit"]:hover {
+            background-color: #0056b3;
+            /* Couleur bleu foncé */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cancellation-form">
+        <h2>Annuler la réservation</h2>
+        <form action="/annuler_reservation" method="POST">
+            <label for="nom">Nom:</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="prenom">Prénom:</label>
+            <input type="text" id="prenom" name="prenom" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <input type="submit" value="Annuler la réservation">
+        </form>
+    </div>
+</body>
+
+</html>
